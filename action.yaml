@@ -1,0 +1,37 @@
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# !!!!!!!!!!!!!! This repository is public !!!!!!!!!!!!!!!!!!!!!!!!
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+# repo is public until Github Action supports cloning private repos
+# https://github.com/github/roadmap/issues/74
+name: 'Get Git SHA for PR or Branch Build'
+description: 'Get Git SHA for PR or Branch Build'
+inputs:
+  github_sha:
+    description: 'should be ${{ github.sha }}'
+    required: true
+  github_event_pull_request_head_sha:
+    description: 'should be ${{ github.event.pull_request.head.sha }}'
+    required: true
+outputs:
+  sha:
+    description: "if pull request : 'github.event.pull_request.head.sha' else : 'github.sha'"
+    value: ${{ steps.do.outputs.sha }}
+  isPullRequest:
+    description: "'true' or 'false'"
+    value: ${{ steps.do.outputs.isPullRequest }}
+runs:
+  using: "composite"
+  steps:
+    - shell: bash
+      id: do
+      run: |
+        if [[ "${{ github_event_pull_request_head_sha }}" != "" ]];
+          sha=${{ github_event_pull_request_head_sha  }}
+          isPullRequest="true"
+        else
+          sha=${{ github_sha }}
+          isPullRequest="false"
+        fi
+        echo "::set-output name=sha::${sha}"
+        echo "::set-output name=isPullRequest::${isPullRequest}"
