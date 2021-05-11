@@ -1,2 +1,2 @@
-First Release
-* outputs a valid git sha whether it's a Pull Request or a Branch build
+Support uniqueName
+* compute a uniqueName based on PR number or short commit sha

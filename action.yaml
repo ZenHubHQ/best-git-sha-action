@@ -13,6 +13,9 @@ inputs:
   github_event_pull_request_head_sha:
     description: 'should be github.event.pull_request.head.sha'
     required: true
+  github_event_number:
+    description: 'should be github.event.number'
+    required: true
 outputs:
   sha:
     description: "if pull request : 'github.event.pull_request.head.sha' else : 'github.sha'"
@@ -20,6 +23,9 @@ outputs:
   isPullRequest:
     description: "'true' or 'false'"
     value: ${{ steps.do.outputs.isPullRequest }}
+  uniqueName:
+    description: "if pull request: 'inputs.github_event_number' else : short 'github.sha' "
+    value: ${{ steps.do.outputs.uniqueName }}
 runs:
   using: "composite"
   steps:
@@ -29,11 +35,16 @@ runs:
         if [[ "${{ inputs.github_event_pull_request_head_sha }}" != "" ]]; then
           sha=${{ inputs.github_event_pull_request_head_sha  }}
           isPullRequest="true"
+          uniqueName="${{ inputs.github_event_number }}"
         else
           sha=${{ inputs.github_sha }}
           isPullRequest="false"
+          uniqueName=${sha:5}
         fi
-        echo "::set-output name=sha::${sha}"
         echo "sha : ${sha}"
-        echo "::set-output name=isPullRequest::${isPullRequest}"
+        echo "uniqueName : ${uniqueName}"
         echo "isPullRequest : ${isPullRequest}"
+
+        echo "::set-output name=sha::${sha}"
+        echo "::set-output name=isPullRequest::${isPullRequest}"
+        echo "::set-output name=uniqueName::${uniqueName}"
