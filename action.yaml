@@ -26,7 +26,7 @@ runs:
     - shell: bash
       id: do
       run: |
-        if [[ "${{ inputs.github_event_pull_request_head_sha }}" != "" ]];
+        if [[ "${{ inputs.github_event_pull_request_head_sha }}" != "" ]]; then
           sha=${{ inputs.github_event_pull_request_head_sha  }}
           isPullRequest="true"
         else
