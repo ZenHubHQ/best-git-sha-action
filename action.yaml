@@ -26,11 +26,11 @@ runs:
     - shell: bash
       id: do
       run: |
-        if [[ "${{ github_event_pull_request_head_sha }}" != "" ]];
-          sha=${{ github_event_pull_request_head_sha  }}
+        if [[ "${{ inputs.github_event_pull_request_head_sha }}" != "" ]];
+          sha=${{ inputs.github_event_pull_request_head_sha  }}
           isPullRequest="true"
         else
-          sha=${{ github_sha }}
+          sha=${{ inputs.github_sha }}
           isPullRequest="false"
         fi
         echo "::set-output name=sha::${sha}"
