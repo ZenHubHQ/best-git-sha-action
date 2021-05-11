@@ -34,4 +34,6 @@ runs:
           isPullRequest="false"
         fi
         echo "::set-output name=sha::${sha}"
+        echo "sha : ${sha}"
         echo "::set-output name=isPullRequest::${isPullRequest}"
+        echo "isPullRequest : ${isPullRequest}"
