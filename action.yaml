@@ -16,6 +16,12 @@ inputs:
   github_event_number:
     description: 'should be github.event.number'
     required: true
+  github_event_pull_request_base_ref:
+    description: 'should be github.event.pull_request.base.ref'
+    required: true
+  github_event_ref:
+    description: 'should be github.event.ref'
+    required: true
 outputs:
   sha:
     description: "if pull request : 'github.event.pull_request.head.sha' else : 'github.sha'"
@@ -26,20 +32,27 @@ outputs:
   uniqueName:
     description: "if pull request: 'inputs.github_event_number' else : short 'github.sha' "
     value: ${{ steps.do.outputs.uniqueName }}
+  baseBranch:
+    description: "if pull request: 'github.event.pull_request.base.ref' else : short 'github.event.ref' stripped out of 'refs/heads/' "
+    value: ${{ steps.do.outputs.baseBranch }}
 runs:
   using: "composite"
   steps:
     - shell: bash
       id: do
       run: |
+        set -x
         if [[ "${{ inputs.github_event_pull_request_head_sha }}" != "" ]]; then
           sha=${{ inputs.github_event_pull_request_head_sha  }}
           isPullRequest="true"
           uniqueName="${{ inputs.github_event_number }}"
+          baseBranch=${{ inputs.github_event_pull_request_base_ref }}
         else
           sha=${{ inputs.github_sha }}
           isPullRequest="false"
           uniqueName=${sha:5}
+          baseBranch=${{ inputs.github_event_ref }}
+          baseBranch=${baseBranch#refs/heads/}
         fi
         echo "sha : ${sha}"
         echo "uniqueName : ${uniqueName}"
@@ -48,3 +61,4 @@ runs:
         echo "::set-output name=sha::${sha}"
         echo "::set-output name=isPullRequest::${isPullRequest}"
         echo "::set-output name=uniqueName::${uniqueName}"
+        echo "::set-output name=baseBranch::${baseBranch}"
