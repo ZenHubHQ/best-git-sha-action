@@ -1,2 +1,2 @@
-Support uniqueName
-* compute a uniqueName based on PR number or short commit sha
+Support baseBranch
+* compute a baseBranch which the base ref of a PR or the ref of a pull
