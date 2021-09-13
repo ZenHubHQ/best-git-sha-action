@@ -41,7 +41,6 @@ runs:
     - shell: bash
       id: do
       run: |
-        set -x
         if [[ "${{ inputs.github_event_pull_request_head_sha }}" != "" ]]; then
           sha=${{ inputs.github_event_pull_request_head_sha  }}
           isPullRequest="true"
