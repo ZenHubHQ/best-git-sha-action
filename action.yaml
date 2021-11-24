@@ -76,7 +76,7 @@ runs:
         echo "sha : ${sha}"
         echo "uniqueName : ${uniqueName}"
         echo "isPullRequest : ${isPullRequest}"
-        echo "currentBranch : ${echo $currentBranch}"
+        echo "currentBranch : ${$currentBranch}"
 
         echo "::set-output name=sha::${sha}"
         echo "::set-output name=isPullRequest::${isPullRequest}"
