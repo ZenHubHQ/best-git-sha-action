@@ -49,7 +49,7 @@ runs:
         else
           sha=${{ inputs.github_sha }}
           isPullRequest="false"
-          uniqueName=${sha:5}
+          uniqueName=${sha:0:8}
           baseBranch=${{ inputs.github_event_ref }}
           baseBranch=${baseBranch#refs/heads/}
         fi
