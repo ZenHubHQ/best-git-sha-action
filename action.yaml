@@ -73,6 +73,8 @@ runs:
         echo "::set-output name=isPullRequest::${isPullRequest}"
         echo "::set-output name=uniqueName::${uniqueName}"
         echo "::set-output name=baseBranch::${baseBranch}"
-        echo "::set-output name=currentBranch::${currentBranch}"
+
+        # replace "/" with "_", wo to awoid errors from validators
+        echo "::set-output name=currentBranch::${currentBranch/\//_}"
 
 #CURRENT_BRANCH=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
