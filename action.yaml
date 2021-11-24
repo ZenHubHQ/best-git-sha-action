@@ -75,7 +75,7 @@ runs:
         echo "::set-output name=uniqueName::${uniqueName}"
         echo "::set-output name=baseBranch::${baseBranch}"
 
-        # replace "/" with "_", wo to awoid errors from validators
-        echo "::set-output name=currentBranch::${currentBranch/\//_}"
+        # replace "/" with "-", wo to avoid errors from validators
+        echo "::set-output name=currentBranch::${currentBranch/\//-}"
 
 #CURRENT_BRANCH=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
