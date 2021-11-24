@@ -59,7 +59,7 @@ runs:
           currentBranch=${currentBranch:0:10}
           # replace "/" with "-", to avoid errors from validators
           # replace "_" with "-", to avoid errors from validators
-          currentBranch=`echo ${currentBranch} | sed 's@[/_]@-@g' `
+          currentBranch=$( echo ${currentBranch} | sed s@[/_]@-@g )
 #          # replace "/" with "-", to avoid errors from validators
 #          currentBranch=${currentBranch//\//-}"
 #          # replace "_" with "-", to avoid errors from validators
