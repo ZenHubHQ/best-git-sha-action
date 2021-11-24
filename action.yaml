@@ -57,13 +57,13 @@ runs:
           baseBranch=${{ inputs.github_event_pull_request_base_ref }}
           currentBranch=${{ inputs.github_head_ref }}
           currentBranch=${currentBranch:0:10}
-          # replace "/" with "-", to avoid errors from validators
-          # replace "_" with "-", to avoid errors from validators
-          currentBranch=$( echo ${currentBranch} | sed s@[/_]@-@g )
 #          # replace "/" with "-", to avoid errors from validators
-#          currentBranch=${currentBranch//\//-}"
 #          # replace "_" with "-", to avoid errors from validators
-#          currentBranch=${currentBranch//_/-}"
+#          currentBranch=$( echo ${currentBranch} | sed s@[/_]@-@g )
+          # replace "/" with "-", to avoid errors from validators
+          currentBranch=${currentBranch//\//-}"
+          # replace "_" with "-", to avoid errors from validators
+          currentBranch=${currentBranch//_/-}"
         else
           sha=${{ inputs.github_sha }}
           isPullRequest="false"
