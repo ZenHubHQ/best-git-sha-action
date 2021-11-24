@@ -61,9 +61,9 @@ runs:
           # replace "_" with "-", to avoid errors from validators
           # currentBranch=$( echo ${currentBranch} | sed s@[/_]@-@g )
           # replace "/" with "-", to avoid errors from validators
-          currentBranch=${currentBranch//\//-}"
+          currentBranch=${currentBranch//\//-}
           # replace "_" with "-", to avoid errors from validators
-          currentBranch=${currentBranch//_/-}"
+          currentBranch=${currentBranch//_/-}
         else
           sha=${{ inputs.github_sha }}
           isPullRequest="false"
@@ -76,7 +76,7 @@ runs:
         echo "sha : ${sha}"
         echo "uniqueName : ${uniqueName}"
         echo "isPullRequest : ${isPullRequest}"
-        echo "currentBranch : ${$currentBranch}"
+        echo "currentBranch : ${currentBranch}"
 
         echo "::set-output name=sha::${sha}"
         echo "::set-output name=isPullRequest::${isPullRequest}"
