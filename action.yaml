@@ -56,6 +56,7 @@ runs:
           uniqueName="${{ inputs.github_event_number }}"
           baseBranch=${{ inputs.github_event_pull_request_base_ref }}
           currentBranch=${{ inputs.github_head_ref }}
+          currentBranch=${currentBranch:0:10}
         else
           sha=${{ inputs.github_sha }}
           isPullRequest="false"
