@@ -1,2 +1,2 @@
-Support baseBranch
-* compute a baseBranch which the base ref of a PR or the ref of a pull
+Support currentBranch
+* compute a currentBranch that triggered workflow.
