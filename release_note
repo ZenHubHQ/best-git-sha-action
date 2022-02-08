@@ -1,2 +1,1 @@
-Support currentBranch
-* compute a currentBranch that triggered workflow.
+return current_branch in lowercase
