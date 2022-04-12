@@ -61,6 +61,8 @@ runs:
           currentBranch=${currentBranch//\//-}
           # replace "_" with "-", to avoid errors from validators
           currentBranch=${currentBranch//_/-}
+          # replace "." with "-", to avoid errors from validators
+          currentBranch=${currentBranch//\./-}
         else
           sha=${{ inputs.github_sha }}
           isPullRequest="false"
