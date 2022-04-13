@@ -71,6 +71,11 @@ runs:
           baseBranch=${baseBranch#refs/heads/}
           currentBranch=${{ inputs.github_ref }}
           currentBranch=${currentBranch#refs/heads/}
+          # replace "/" with "-", to avoid errors from validators
+          currentBranch=${currentBranch//\//-}
+          # replace "_" with "-", to avoid errors from validators
+          currentBranch=${currentBranch//_/-}
+          # replace "." with "-", to avoid errors from validators
           currentBranch=${currentBranch//\./-}
         fi
         currentBranch=$(echo ${currentBranch} | tr "[:upper:]" "[:lower:]")
