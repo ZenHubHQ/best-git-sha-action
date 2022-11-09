@@ -85,8 +85,8 @@ runs:
         echo "isPullRequest : ${isPullRequest}"
         echo "currentBranch : ${currentBranch}"
 
-        echo "::set-output name=sha::${sha}"
-        echo "::set-output name=isPullRequest::${isPullRequest}"
-        echo "::set-output name=uniqueName::${uniqueName}"
-        echo "::set-output name=baseBranch::${baseBranch}"
-        echo "::set-output name=currentBranch::${currentBranch}"
+        echo "sha=${sha}" >> $GITHUB_OUTPUT
+        echo "isPullRequest=${isPullRequest}" >> $GITHUB_OUTPUT
+        echo "uniqueName=${uniqueName}" >> $GITHUB_OUTPUT
+        echo "baseBranch=${baseBranch}" >> $GITHUB_OUTPUT
+        echo "currentBranch=${currentBranch}" >> $GITHUB_OUTPUT
